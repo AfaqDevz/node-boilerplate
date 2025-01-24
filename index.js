@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.js"
 import 'dotenv/config'
+import authValid from "./middleware/authValid.js"
 
 const app = express();
 
@@ -20,5 +21,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3002, () => {
-    console.log('Server is running properly!')
+    console.log('Server is running properly on 3002')
 })
