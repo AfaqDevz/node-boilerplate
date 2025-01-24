@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.js"
+import userRoutes from "./routes/users.js"
 import 'dotenv/config'
 
 const app = express();
@@ -14,6 +15,8 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch((e) => { console.log(e) })
 
 app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
+
 
 app.get('/', (req, res) => {
     res.json('Server is working!')

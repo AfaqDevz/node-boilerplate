@@ -30,7 +30,7 @@ router.post('/signup', async (req, res) => {
     let newUser = new User({ ...value });
     newUser = await newUser.save();
 
-    sendRes(res, 201, newUser, false, 'User created succesfully!')
+    sendRes(res, 201, newUser, false, 'User created succesfully!');
 })
 
 router.post('/login', async (req, res) => {
