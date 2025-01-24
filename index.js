@@ -7,7 +7,7 @@ import 'dotenv/config'
 const app = express();
 
 app.use(express.json());
-app.use(cors("*"))
+app.use(cors("*"));
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => { console.log('DB is connected!') })
@@ -16,9 +16,9 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
-    res.json('Server is working!')
+    res.json('Server is working!', process.env.PORT)
 })
 
-app.listen(3002, () => {
-    console.log('Server is running properly on 3002')
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running properly on ${process.env.PORT}`)
 })
