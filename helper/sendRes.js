@@ -1,7 +1,7 @@
-export default function sendRes(res, status, data, error, msg) {
+export default function sendRes(res, status, data, error, message) {
     res.status(status).json({
         error: error,
         data: data,
-        msg: msg
+        message: message
     })
 }
