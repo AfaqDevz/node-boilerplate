@@ -22,13 +22,11 @@ const loginSchema = Joi.object({
 router.post('/signup', async (req, res) => {
     const { error, value } = signupSchema.validate(req.body);
     if (error) return sendRes(res, 400, null, true, error.message);
-
     const user = await User.findOne({ email: value.email }).lean()
     if (user) return sendRes(res, 403, null, true, 'User already exists.');
 
     const hashedPassword = await bcrypt.hash(value.password, 10)
     value.password = hashedPassword;
-
     let newUser = new User({ ...value });
     newUser = await newUser.save();
 
@@ -38,13 +36,11 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     const { error, value } = loginSchema.validate(req.body);
     if (error) return sendRes(res, 400, null, true, error.message);
-
     const user = await User.findOne({ email: value.email }).lean();
     if (!user) return sendRes(res, 403, null, true, 'User not exists');
 
     const passwordChecker = await bcrypt.compare(value.password, user.password);
     if (!passwordChecker) return sendRes(res, 403, null, true, 'Wrong Password or Email');
-
     delete user.password
 
     var token = jwt.sign({ ...user }, process.env.AUTH_SECRET);
