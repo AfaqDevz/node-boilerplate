@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
-    res.json('Server is working!', process.env.PORT)
+    res.json('Server is working!')
 })
 
 app.listen(process.env.PORT, () => {
