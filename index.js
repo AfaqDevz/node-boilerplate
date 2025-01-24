@@ -3,7 +3,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/auth.js"
 import 'dotenv/config'
-import authValid from "./middleware/authValid.js"
 
 const app = express();
 
